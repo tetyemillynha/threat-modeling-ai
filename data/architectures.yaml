@@ -1,0 +1,16 @@
+path: data/labeled
+train: images/train
+val: images/val
+
+names:
+  0: user
+  1: api_gateway
+  2: app_service
+  3: database
+  4: storage
+  5: waf_firewall
+  6: cdn
+  7: load_balancer
+  8: cache
+  9: monitoring_logging
+  10: identity_auth
