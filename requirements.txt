@@ -1,8 +1,4 @@
-# MVP Modelagem de Ameaças com IA - FIAP Software Security
-# Python 3.10+
-
-PyYAML>=6.0
-Pillow>=10.0.0
-
-# Treino e inferência YOLO (detecção de componentes em diagramas)
-ultralytics>=8.0.0
+ultralytics
+opencv-python
+pydantic
+jinja2
