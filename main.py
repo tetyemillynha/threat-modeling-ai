@@ -30,5 +30,9 @@ def main():
     md_path = outdir / "report.md"
     md_path.write_text(md, encoding="utf-8")
 
+    print(f"OK! Relatório gerado em: {md_path}")
+    print(f"Detecções: {outdir / 'detections.json'}")
+    print(f"STRIDE JSON: {outdir / 'stride_report.json'}")
+
 if __name__ == "__main__":
     main()
