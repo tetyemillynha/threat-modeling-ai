@@ -177,3 +177,39 @@ KB: Dict[str, List[ThreatItem]] = {
     ]
 }
 
+def build_stride_report(detections: List[dict]) -> dict:
+    """
+    detections: lista de dicts {class, confidence, bbox}
+    """
+    components = []
+    for det in detections:
+        cls = det["class"]
+        items = KB.get(cls, [])
+        components.append({
+            "class": cls,
+            "confidence": float(det.get("confidence", 0)),
+            "bbox": det.get("bbox"),
+            "stride": [
+                {
+                    "code": it.stride,
+                    "label": STRIDE_LABELS[it.stride],
+                    "title": it.title,
+                    "description": it.description,
+                    "mitigations": it.mitigations,
+                }
+                for it in items
+            ]
+        })
+
+    # resumo simples
+    summary = {
+        "total_components": len(detections),
+        "by_class": {}
+    }
+    for det in detections:
+        summary["by_class"][det["class"]] = summary["by_class"].get(det["class"], 0) + 1
+
+    return {
+        "summary": summary,
+        "components": components
+    }
