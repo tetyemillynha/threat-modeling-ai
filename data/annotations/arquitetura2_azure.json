@@ -1,0 +1,16 @@
+{
+  "image_id": "arquitetura2_azure",
+  "description": "Figura 2 - Arquitetura Azure (API Management + Logic Apps)",
+  "components": [
+    {"type": "user", "label": "Usuário/Cliente"},
+    {"type": "developer_portal", "label": "Developer portal"},
+    {"type": "api_gateway", "label": "API gateway"},
+    {"type": "auth_service", "label": "Microsoft Entra"},
+    {"type": "workflow_orchestrator", "label": "Logic Apps"},
+    {"type": "other", "label": "Azure services"},
+    {"type": "external_service", "label": "SaaS services"},
+    {"type": "external_service", "label": "REST"},
+    {"type": "external_service", "label": "SOAP"}
+  ],
+  "notes": "Diagrama de avaliação do projeto - Arquitetura 2"
+}

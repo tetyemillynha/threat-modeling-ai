@@ -1,0 +1,22 @@
+{
+  "image_id": "arquitetura1_aws",
+  "description": "Figura 1 - Arquitetura AWS (SEI) - diagrama de avaliação",
+  "components": [
+    {"type": "user", "label": "Usuários SEI"},
+    {"type": "cdn", "label": "Amazon CloudFront"},
+    {"type": "waf", "label": "AWS WAF"},
+    {"type": "load_balancer", "label": "Application Load Balancer"},
+    {"type": "application_server", "label": "SEI / SIP"},
+    {"type": "database", "label": "Amazon RDS (Primary)"},
+    {"type": "database", "label": "Amazon RDS (Secondary)"},
+    {"type": "storage", "label": "Amazon Elastic File System (NFS)"},
+    {"type": "cache", "label": "Amazon ElastiCache (memcached)"},
+    {"type": "application_server", "label": "Solr"},
+    {"type": "other", "label": "AWS CloudTrail"},
+    {"type": "other", "label": "AWS KMS"},
+    {"type": "other", "label": "AWS Backup"},
+    {"type": "other", "label": "Amazon CloudWatch"},
+    {"type": "other", "label": "Amazon SES"}
+  ],
+  "notes": "Diagrama de avaliação do projeto - Arquitetura 1"
+}
