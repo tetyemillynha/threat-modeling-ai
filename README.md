@@ -1,4 +1,4 @@
-# Modelagem de Ameaças com IA (STRIDE) — Relatório do Projeto
+# Modelagem de Ameaças com IA (STRIDE)
 
 **Projeto:** MVP de detecção supervisionada para modelagem de ameaças a partir de diagramas de arquitetura.  
 **Contexto:** FIAP Software Security – validar uso de IA para identificar componentes e gerar relatório STRIDE automaticamente.
@@ -84,7 +84,7 @@ Esta seção descreve o **fluxo utilizado para o desenvolvimento** do MVP, da co
 
 ---
 
-## 4. Estrutura do repositório (validada)
+## 4. Estrutura do repositório
 
 ```
 threat-modeling-ai/
