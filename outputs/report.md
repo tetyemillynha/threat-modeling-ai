@@ -1,6 +1,6 @@
 # Relatório de Modelagem de Ameaças (STRIDE)
-**Imagem analisada:** `inputs/arch10.png`  
-**Gerado em:** 2026-03-06 05:09 UTC
+**Imagem analisada:** `inputs/arch7.png`  
+**Gerado em:** 2026-03-06 14:24 UTC
 ## 1) Resumo
 - Componentes detectados: **0**
 - Contagem por classe:
