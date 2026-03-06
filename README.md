@@ -186,3 +186,19 @@ As classes devem ser **exatamente** estas (com underscore), para coincidir com o
 - **Relatório:** `python main.py --image <caminho_imagem> --model runs/detect/train/weights/best.pt --outdir outputs`
 - **Split train/val:** `python scripts/split_train_val.py [--ratio 0.10]`
 - **Classes:** seção 5 ou `data/architectures.yaml`.
+
+---
+
+## 11. Autor
+
+**Stefhany Santos**
+
+Projeto desenvolvido para o **Hackaton - Fase 5**  
+**FIAP** — Pós-Graduação em Inteligência Artificial
+
+---
+
+## 12. Referências
+
+- **STRIDE** — Metodologia de modelagem de ameaças (Microsoft Security).
+- **Ultralytics YOLO** — [https://github.com/ultralytics/ultralytics](https://github.com/ultralytics/ultralytics) — Detecção de objetos (YOLOv8).
