@@ -1,0 +1,825 @@
+{
+  "summary": {
+    "total_components": 15,
+    "by_class": {
+      "cdn": 4,
+      "load_balancer": 4,
+      "database": 2,
+      "monitoring_logging": 1,
+      "storage": 2,
+      "identity_auth": 1,
+      "app_service": 1
+    }
+  },
+  "components": [
+    {
+      "class": "cdn",
+      "confidence": 0.9169398546218872,
+      "bbox": {
+        "x": 145.92572021484375,
+        "y": 583.688232421875,
+        "w": 124.9293212890625,
+        "h": 147.1910400390625
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Cache de conteúdo sensível",
+          "description": "Conteúdo com dados privados pode ser cacheado indevidamente.",
+          "mitigations": [
+            "Cache-control correto",
+            "Separar domínios",
+            "Evitar cache para endpoints sensíveis"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Injeção via conteúdo estático malicioso",
+          "description": "Arquivos estáticos podem ser adulterados.",
+          "mitigations": [
+            "Assinatura/integ. de artefatos",
+            "Controle de versão",
+            "SRI (web) quando aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Amplificação de tráfego",
+          "description": "CDN pode amplificar impacto se mal configurada.",
+          "mitigations": [
+            "Rate limiting",
+            "WAF na borda",
+            "Proteção DDoS"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "load_balancer",
+      "confidence": 0.870074987411499,
+      "bbox": {
+        "x": 970.6153564453125,
+        "y": 668.6400146484375,
+        "w": 118.98388671875,
+        "h": 143.6807861328125
+      },
+      "stride": [
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões",
+          "description": "Muitas conexões simultâneas derrubam o LB ou backends.",
+          "mitigations": [
+            "Timeouts corretos",
+            "Limites de conexão",
+            "Auto scaling",
+            "Health checks"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "TLS fraco / downgrade",
+          "description": "Cifras fracas ou TLS mal configurado expõe dados.",
+          "mitigations": [
+            "TLS moderno",
+            "HSTS (web)",
+            "mTLS interno quando necessário"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Header spoofing (X-Forwarded-For)",
+          "description": "IP de origem pode ser forjado sem validação.",
+          "mitigations": [
+            "Confiar apenas em headers do LB",
+            "Sanitização de headers",
+            "Logs no LB"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "cdn",
+      "confidence": 0.7754257917404175,
+      "bbox": {
+        "x": 440.26336669921875,
+        "y": 608.9508666992188,
+        "w": 133.71063232421875,
+        "h": 122.40234375
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Cache de conteúdo sensível",
+          "description": "Conteúdo com dados privados pode ser cacheado indevidamente.",
+          "mitigations": [
+            "Cache-control correto",
+            "Separar domínios",
+            "Evitar cache para endpoints sensíveis"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Injeção via conteúdo estático malicioso",
+          "description": "Arquivos estáticos podem ser adulterados.",
+          "mitigations": [
+            "Assinatura/integ. de artefatos",
+            "Controle de versão",
+            "SRI (web) quando aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Amplificação de tráfego",
+          "description": "CDN pode amplificar impacto se mal configurada.",
+          "mitigations": [
+            "Rate limiting",
+            "WAF na borda",
+            "Proteção DDoS"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "database",
+      "confidence": 0.7225834727287292,
+      "bbox": {
+        "x": 341.2614440917969,
+        "y": 39.32884216308594,
+        "w": 118.16177368164062,
+        "h": 132.36178588867188
+      },
+      "stride": [
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "SQL injection / alteração de dados",
+          "description": "Entrada não validada permite manipular queries e dados.",
+          "mitigations": [
+            "ORM/prepared statements",
+            "Validação de input",
+            "WAF rules"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Mudanças sem auditoria",
+          "description": "Alterações sem trilha dificultam investigação.",
+          "mitigations": [
+            "Auditoria (logs)",
+            "Trilhas de alteração",
+            "Controle de acesso por função"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Vazamento de dados em repouso",
+          "description": "Dados expostos por backups/snapshots ou acesso indevido.",
+          "mitigations": [
+            "Criptografia at-rest",
+            "KMS/Key Vault",
+            "Privilégios mínimos",
+            "Masking onde aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões/locks",
+          "description": "Muitas conexões ou queries lentas derrubam banco.",
+          "mitigations": [
+            "Pool de conexões",
+            "Índices",
+            "Limites",
+            "Read replicas"
+          ]
+        },
+        {
+          "code": "E",
+          "label": "Elevation of Privilege (Elevação de privilégio)",
+          "title": "Escalada via credenciais do DB",
+          "description": "Credenciais com permissões amplas permitem elevar acesso.",
+          "mitigations": [
+            "Usuários separados por app",
+            "Least privilege",
+            "Rotação de senhas"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "database",
+      "confidence": 0.7156224846839905,
+      "bbox": {
+        "x": 632.9672241210938,
+        "y": 36.99131393432617,
+        "w": 117.042724609375,
+        "h": 134.58618545532227
+      },
+      "stride": [
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "SQL injection / alteração de dados",
+          "description": "Entrada não validada permite manipular queries e dados.",
+          "mitigations": [
+            "ORM/prepared statements",
+            "Validação de input",
+            "WAF rules"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Mudanças sem auditoria",
+          "description": "Alterações sem trilha dificultam investigação.",
+          "mitigations": [
+            "Auditoria (logs)",
+            "Trilhas de alteração",
+            "Controle de acesso por função"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Vazamento de dados em repouso",
+          "description": "Dados expostos por backups/snapshots ou acesso indevido.",
+          "mitigations": [
+            "Criptografia at-rest",
+            "KMS/Key Vault",
+            "Privilégios mínimos",
+            "Masking onde aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões/locks",
+          "description": "Muitas conexões ou queries lentas derrubam banco.",
+          "mitigations": [
+            "Pool de conexões",
+            "Índices",
+            "Limites",
+            "Read replicas"
+          ]
+        },
+        {
+          "code": "E",
+          "label": "Elevation of Privilege (Elevação de privilégio)",
+          "title": "Escalada via credenciais do DB",
+          "description": "Credenciais com permissões amplas permitem elevar acesso.",
+          "mitigations": [
+            "Usuários separados por app",
+            "Least privilege",
+            "Rotação de senhas"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "load_balancer",
+      "confidence": 0.6406702399253845,
+      "bbox": {
+        "x": 215.86959838867188,
+        "y": 800.009521484375,
+        "w": 106.41897583007812,
+        "h": 146.71551513671875
+      },
+      "stride": [
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões",
+          "description": "Muitas conexões simultâneas derrubam o LB ou backends.",
+          "mitigations": [
+            "Timeouts corretos",
+            "Limites de conexão",
+            "Auto scaling",
+            "Health checks"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "TLS fraco / downgrade",
+          "description": "Cifras fracas ou TLS mal configurado expõe dados.",
+          "mitigations": [
+            "TLS moderno",
+            "HSTS (web)",
+            "mTLS interno quando necessário"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Header spoofing (X-Forwarded-For)",
+          "description": "IP de origem pode ser forjado sem validação.",
+          "mitigations": [
+            "Confiar apenas em headers do LB",
+            "Sanitização de headers",
+            "Logs no LB"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "load_balancer",
+      "confidence": 0.4906694293022156,
+      "bbox": {
+        "x": 958.0296020507812,
+        "y": 827.5264282226562,
+        "w": 136.38323974609375,
+        "h": 151.6619873046875
+      },
+      "stride": [
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões",
+          "description": "Muitas conexões simultâneas derrubam o LB ou backends.",
+          "mitigations": [
+            "Timeouts corretos",
+            "Limites de conexão",
+            "Auto scaling",
+            "Health checks"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "TLS fraco / downgrade",
+          "description": "Cifras fracas ou TLS mal configurado expõe dados.",
+          "mitigations": [
+            "TLS moderno",
+            "HSTS (web)",
+            "mTLS interno quando necessário"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Header spoofing (X-Forwarded-For)",
+          "description": "IP de origem pode ser forjado sem validação.",
+          "mitigations": [
+            "Confiar apenas em headers do LB",
+            "Sanitização de headers",
+            "Logs no LB"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "monitoring_logging",
+      "confidence": 0.4750584661960602,
+      "bbox": {
+        "x": 969.355224609375,
+        "y": 530.1201782226562,
+        "w": 116.840576171875,
+        "h": 132.17822265625
+      },
+      "stride": [
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Adulteração de logs",
+          "description": "Atacante tenta apagar/alterar trilhas.",
+          "mitigations": [
+            "Logs imutáveis",
+            "Write-once/retention",
+            "Acesso restrito"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Logs com dados sensíveis",
+          "description": "PII/segredos em logs.",
+          "mitigations": [
+            "Redação",
+            "Política de logging",
+            "Scrubbing"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Explosão de logs/telemetria",
+          "description": "Logging excessivo derruba performance/custo.",
+          "mitigations": [
+            "Rate limit de logs",
+            "Sampling",
+            "Alertas de volume"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "storage",
+      "confidence": 0.43389102816581726,
+      "bbox": {
+        "x": 966.825439453125,
+        "y": 363.9125061035156,
+        "w": 121.781494140625,
+        "h": 153.71292114257812
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Buckets/containers públicos",
+          "description": "Armazenamento exposto por política incorreta.",
+          "mitigations": [
+            "Bloquear acesso público",
+            "Políticas mínimas",
+            "Revisão de ACLs"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Upload malicioso",
+          "description": "Arquivos podem conter malware ou scripts.",
+          "mitigations": [
+            "Antivírus/scan",
+            "Validação de tipo",
+            "Assinatura de uploads"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Sem trilha de acesso a objetos",
+          "description": "Sem logs não é possível rastrear downloads/alterações.",
+          "mitigations": [
+            "Logs de acesso",
+            "Versionamento",
+            "Imutabilidade (quando necessário)"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Abuso de armazenamento",
+          "description": "Crescimento descontrolado gera custo/indisponibilidade.",
+          "mitigations": [
+            "Quotas",
+            "Lifecycle policies",
+            "Alertas de uso"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "storage",
+      "confidence": 0.4162587523460388,
+      "bbox": {
+        "x": 969.23779296875,
+        "y": 669.35400390625,
+        "w": 120.5703125,
+        "h": 143.44647216796875
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Buckets/containers públicos",
+          "description": "Armazenamento exposto por política incorreta.",
+          "mitigations": [
+            "Bloquear acesso público",
+            "Políticas mínimas",
+            "Revisão de ACLs"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Upload malicioso",
+          "description": "Arquivos podem conter malware ou scripts.",
+          "mitigations": [
+            "Antivírus/scan",
+            "Validação de tipo",
+            "Assinatura de uploads"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Sem trilha de acesso a objetos",
+          "description": "Sem logs não é possível rastrear downloads/alterações.",
+          "mitigations": [
+            "Logs de acesso",
+            "Versionamento",
+            "Imutabilidade (quando necessário)"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Abuso de armazenamento",
+          "description": "Crescimento descontrolado gera custo/indisponibilidade.",
+          "mitigations": [
+            "Quotas",
+            "Lifecycle policies",
+            "Alertas de uso"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "cdn",
+      "confidence": 0.4063872694969177,
+      "bbox": {
+        "x": 436.1691589355469,
+        "y": 551.6650390625,
+        "w": 151.67495727539062,
+        "h": 180.48382568359375
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Cache de conteúdo sensível",
+          "description": "Conteúdo com dados privados pode ser cacheado indevidamente.",
+          "mitigations": [
+            "Cache-control correto",
+            "Separar domínios",
+            "Evitar cache para endpoints sensíveis"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Injeção via conteúdo estático malicioso",
+          "description": "Arquivos estáticos podem ser adulterados.",
+          "mitigations": [
+            "Assinatura/integ. de artefatos",
+            "Controle de versão",
+            "SRI (web) quando aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Amplificação de tráfego",
+          "description": "CDN pode amplificar impacto se mal configurada.",
+          "mitigations": [
+            "Rate limiting",
+            "WAF na borda",
+            "Proteção DDoS"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "identity_auth",
+      "confidence": 0.40053147077560425,
+      "bbox": {
+        "x": 961.0565795898438,
+        "y": 223.7109832763672,
+        "w": 131.64801025390625,
+        "h": 136.76234436035156
+      },
+      "stride": [
+        {
+          "code": "S",
+          "label": "Spoofing (Falsificação de identidade)",
+          "title": "Sequestro/forja de tokens",
+          "description": "Tokens de sessão/JWT podem ser roubados ou forjados.",
+          "mitigations": [
+            "Assinatura e rotação de chaves",
+            "Curto TTL + refresh seguro",
+            "MFA",
+            "TLS obrigatório"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Adulteração de claims/perfis",
+          "description": "Claims podem ser manipuladas se validação for fraca.",
+          "mitigations": [
+            "Validação de assinatura",
+            "Audience/issuer checks",
+            "Scopes/roles no servidor"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Falha de auditoria de autenticação",
+          "description": "Sem logs de login, tentativas e mudanças de privilégios.",
+          "mitigations": [
+            "Logs de autenticação",
+            "Alertas de brute force",
+            "Integração com SIEM"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Brute force / credential stuffing",
+          "description": "Ataques massivos de login degradam o serviço.",
+          "mitigations": [
+            "Rate limit",
+            "CAPTCHA/step-up auth",
+            "Bloqueio progressivo",
+            "WAF rules"
+          ]
+        },
+        {
+          "code": "E",
+          "label": "Elevation of Privilege (Elevação de privilégio)",
+          "title": "Bypass de autorização",
+          "description": "Permissões erradas permitem acesso elevado.",
+          "mitigations": [
+            "RBAC/ABAC bem definido",
+            "Least privilege",
+            "Revisões periódicas de acesso"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "app_service",
+      "confidence": 0.3319056034088135,
+      "bbox": {
+        "x": 471.19586181640625,
+        "y": 44.59490966796875,
+        "w": 134.77801513671875,
+        "h": 125.50874328613281
+      },
+      "stride": [
+        {
+          "code": "S",
+          "label": "Spoofing (Falsificação de identidade)",
+          "title": "Service-to-service spoofing",
+          "description": "Serviço malicioso finge ser outro serviço interno.",
+          "mitigations": [
+            "mTLS",
+            "Service identity",
+            "Network policies"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "RCE / dependências vulneráveis",
+          "description": "Código/dependências permitem execução remota ou alteração de dados.",
+          "mitigations": [
+            "SAST/DAST",
+            "SBOM",
+            "Patch management",
+            "Least privilege runtime"
+          ]
+        },
+        {
+          "code": "R",
+          "label": "Repudiation (Repúdio)",
+          "title": "Ações sem auditoria de negócio",
+          "description": "Operações críticas não têm trilha.",
+          "mitigations": [
+            "Logs de negócio",
+            "Auditoria por evento",
+            "Imutabilidade de logs"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Segredos expostos",
+          "description": "Chaves/token em env/logs ou repositório.",
+          "mitigations": [
+            "Secret manager",
+            "Rotação",
+            "Redação de logs",
+            "CI checks"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de recursos",
+          "description": "CPU/memória saturadas por payload pesado.",
+          "mitigations": [
+            "Rate limit",
+            "Limites de payload",
+            "Auto scaling",
+            "Fila assíncrona"
+          ]
+        },
+        {
+          "code": "E",
+          "label": "Elevation of Privilege (Elevação de privilégio)",
+          "title": "Privilégios excessivos no runtime",
+          "description": "Serviço com permissões além do necessário.",
+          "mitigations": [
+            "IAM least privilege",
+            "Separar roles",
+            "Revisão de permissões"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "cdn",
+      "confidence": 0.3086124360561371,
+      "bbox": {
+        "x": 434.85443115234375,
+        "y": 538.3324584960938,
+        "w": 158.7596435546875,
+        "h": 136.05340576171875
+      },
+      "stride": [
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "Cache de conteúdo sensível",
+          "description": "Conteúdo com dados privados pode ser cacheado indevidamente.",
+          "mitigations": [
+            "Cache-control correto",
+            "Separar domínios",
+            "Evitar cache para endpoints sensíveis"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Injeção via conteúdo estático malicioso",
+          "description": "Arquivos estáticos podem ser adulterados.",
+          "mitigations": [
+            "Assinatura/integ. de artefatos",
+            "Controle de versão",
+            "SRI (web) quando aplicável"
+          ]
+        },
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Amplificação de tráfego",
+          "description": "CDN pode amplificar impacto se mal configurada.",
+          "mitigations": [
+            "Rate limiting",
+            "WAF na borda",
+            "Proteção DDoS"
+          ]
+        }
+      ]
+    },
+    {
+      "class": "load_balancer",
+      "confidence": 0.2629058361053467,
+      "bbox": {
+        "x": 468.3739929199219,
+        "y": 42.82160186767578,
+        "w": 137.66091918945312,
+        "h": 126.93311309814453
+      },
+      "stride": [
+        {
+          "code": "D",
+          "label": "Denial of Service (Negação de serviço)",
+          "title": "Exaustão de conexões",
+          "description": "Muitas conexões simultâneas derrubam o LB ou backends.",
+          "mitigations": [
+            "Timeouts corretos",
+            "Limites de conexão",
+            "Auto scaling",
+            "Health checks"
+          ]
+        },
+        {
+          "code": "I",
+          "label": "Information Disclosure (Exposição de informação)",
+          "title": "TLS fraco / downgrade",
+          "description": "Cifras fracas ou TLS mal configurado expõe dados.",
+          "mitigations": [
+            "TLS moderno",
+            "HSTS (web)",
+            "mTLS interno quando necessário"
+          ]
+        },
+        {
+          "code": "T",
+          "label": "Tampering (Adulteração)",
+          "title": "Header spoofing (X-Forwarded-For)",
+          "description": "IP de origem pode ser forjado sem validação.",
+          "mitigations": [
+            "Confiar apenas em headers do LB",
+            "Sanitização de headers",
+            "Logs no LB"
+          ]
+        }
+      ]
+    }
+  ]
+}

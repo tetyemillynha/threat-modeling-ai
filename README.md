@@ -3,10 +3,6 @@
 **Projeto:** MVP de detecção supervisionada para modelagem de ameaças a partir de diagramas de arquitetura.  
 **Contexto:** FIAP Software Security – validar uso de IA para identificar componentes e gerar relatório STRIDE automaticamente.
 
-**Documentação:** [docs/FLUXO_DESENVOLVIMENTO.md](docs/FLUXO_DESENVOLVIMENTO.md) (fluxo completo) · [docs/APRESENTACAO_PROJETO.md](docs/APRESENTACAO_PROJETO.md) (estrutura, código, libs, resultados) · [docs/ROTEIRO_VIDEO_15MIN.md](docs/ROTEIRO_VIDEO_15MIN.md) (roteiro do vídeo)
-
----
-
 ## 1. Objetivos do projeto
 
 - **Interpretar automaticamente** um diagrama de arquitetura (imagem), identificando componentes (usuários, servidores, bases de dados, APIs, CDN, WAF, etc.).
